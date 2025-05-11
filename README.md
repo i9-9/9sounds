@@ -1,4 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 9sounds
+
+## Descripción
+
+Esta web es un experimento para permitir crear y lanzar música sin el contexto de un EP, Álbum, o sello. La música aquí presente quiere ser sin limitaciones de formato o género.
+
+## Tecnologías
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- IBM Plex Mono Font
+
+## Desarrollo
+
+```bash
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Construir para producción
+npm run build
+```
 
 ## Getting Started
 
