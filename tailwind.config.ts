@@ -7,7 +7,12 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'helvetica': ['var(--font-helvetica-now-display)', 'sans-serif'],
+        'ibm': ['var(--font-ibm-plex-mono)', 'monospace'],
+      },
+    },
   },
   plugins: [],
 }

@@ -59,10 +59,10 @@ export default function MusicAccordionItem({ piece }: MusicAccordionItemProps) {
           >
             <StopIcon />
           </button>
-          <span className="ibm-plex-mono-medium text-sm">{piece.title}</span>
+          <span className="helvetica-medium text-sm">{piece.title}</span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="ibm-plex-mono-light text-xs text-gray-500">
+          <span className="helvetica-light text-xs text-gray-500">
             {new Date(piece.dateAdded).toLocaleDateString()}
           </span>
           <span className={`text-gray-400 text-xs transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
@@ -79,7 +79,7 @@ export default function MusicAccordionItem({ piece }: MusicAccordionItemProps) {
         <div className="overflow-hidden">
           <div className="px-3 py-2 bg-gray-50">
             {piece.description && (
-              <p className="ibm-plex-mono-regular text-sm mb-3">{piece.description}</p>
+              <p className="helvetica-regular text-sm mb-3">{piece.description}</p>
             )}
             {piece.coverArt && (
               <div className="w-32 h-32 relative mb-3">

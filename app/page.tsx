@@ -12,10 +12,10 @@ export default function Home() {
   return (
     <main className="min-h-screen w-screen p-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold ibm-plex-mono-bold">sonidos 9 - reservorio</h1>
+        <h1 className="text-2xl font-helvetica helvetica-bold">Sonidos 9 - Reservorio</h1>
         <button
           onClick={() => setIsInfoModalOpen(true)}
-          className="px-3 py-1 text-sm ibm-plex-mono-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded"
+          className="px-3 py-1 text-sm helvetica-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded"
         >
           INFO
         </button>

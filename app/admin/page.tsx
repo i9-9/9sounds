@@ -21,7 +21,7 @@ export default function AdminPanel() {
   return (
     <main className="min-h-screen w-screen p-4 flex items-center justify-center">
       <div className="w-full max-w-sm">
-        <h1 className="text-2xl font-bold mb-6 ibm-plex-mono-bold">Admin Panel</h1>
+        <h1 className="text-2xl font-bold mb-6 helvetica-bold">Admin Panel</h1>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -30,17 +30,17 @@ export default function AdminPanel() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Contraseña"
-              className="w-full p-2 border rounded ibm-plex-mono-regular"
+              className="w-full p-2 border rounded helvetica-regular"
             />
           </div>
           
           {error && (
-            <p className="text-red-500 text-sm ibm-plex-mono-regular">{error}</p>
+            <p className="text-red-500 text-sm helvetica-regular">{error}</p>
           )}
           
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-black text-white rounded ibm-plex-mono-medium hover:bg-gray-800"
+            className="w-full px-4 py-2 bg-black text-white rounded helvetica-medium hover:bg-gray-800"
           >
             Entrar
           </button>

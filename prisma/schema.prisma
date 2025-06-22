@@ -18,8 +18,8 @@ model Piece {
   title       String
   dateAdded   DateTime @default(now())
   description String?
-  coverArt    String?
-  audioUrl    String
+  coverArt    String?  // Ruta local: /images/nombre-imagen.jpg
+  audioUrl    String   // Ruta local: /audio/nombre-audio.mp3
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
