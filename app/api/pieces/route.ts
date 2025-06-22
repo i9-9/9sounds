@@ -10,7 +10,7 @@ export async function GET() {
     return NextResponse.json(pieces);
   } catch (error) {
     return NextResponse.json(
-      { error: 'Error al obtener las piezas' },
+      { error: `Error al obtener las piezas: ${error instanceof Error ? error.message : 'Error desconocido'}` },
       { status: 500 }
     );
   }
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     return NextResponse.json(piece);
   } catch (error) {
     return NextResponse.json(
-      { error: 'Error al crear la pieza' },
+      { error: `Error al crear la pieza: ${error instanceof Error ? error.message : 'Error desconocido'}` },
       { status: 500 }
     );
   }
@@ -54,7 +54,7 @@ export async function PUT(request: Request) {
     return NextResponse.json(piece);
   } catch (error) {
     return NextResponse.json(
-      { error: 'Error al actualizar la pieza' },
+      { error: `Error al actualizar la pieza: ${error instanceof Error ? error.message : 'Error desconocido'}` },
       { status: 500 }
     );
   }
@@ -80,7 +80,7 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json(
-      { error: 'Error al eliminar la pieza' },
+      { error: `Error al eliminar la pieza: ${error instanceof Error ? error.message : 'Error desconocido'}` },
       { status: 500 }
     );
   }

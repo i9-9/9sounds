@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { MusicPiece } from '../../types';
 import { usePieces } from '../../context/PiecesContext';
 
@@ -127,14 +128,14 @@ export default function Dashboard() {
 
               <div>
                 <label className="block ibm-plex-mono-medium text-sm text-gray-700 mb-2">Archivo de Audio</label>
-                <input
+                  <input
                   type="text"
                   value={audioFile}
                   placeholder="Ingresa la ruta del archivo de audio (por ejemplo, /public/audio/example.mp3)"
                   onChange={(e) => setAudioFile(e.target.value)}
                   className="block w-full text-sm text-slate-500
                     border border-slate-300 rounded px-2 py-1"
-                />
+                  />
               </div>
 
               <div>
@@ -175,46 +176,48 @@ export default function Dashboard() {
             {isLoading ? (
               <p className="text-gray-500 ibm-plex-mono-regular">Cargando piezas...</p>
             ) : (
-              <div className="space-y-4">
-                {pieces.map((piece) => (
-                  <div 
-                    key={piece.id}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
-                  >
-                    <div className="flex items-center gap-4">
-                      {piece.coverArt && (
-                        <div className="w-12 h-12 relative rounded overflow-hidden">
-                          <img
-                            src={piece.coverArt}
-                            alt={piece.title}
-                            className="object-cover w-full h-full"
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <h3 className="ibm-plex-mono-medium text-gray-900">{piece.title}</h3>
-                        <p className="ibm-plex-mono-regular text-sm text-gray-500">
-                          {new Date(piece.dateAdded).toLocaleDateString()}
-                        </p>
+            <div className="space-y-4">
+              {pieces.map((piece) => (
+                <div 
+                  key={piece.id}
+                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
+                >
+                  <div className="flex items-center gap-4">
+                    {piece.coverArt && (
+                      <div className="w-12 h-12 relative rounded overflow-hidden">
+                        <Image
+                          src={piece.coverArt}
+                          alt={piece.title}
+                          fill
+                          className="object-cover"
+                          sizes="48px"
+                        />
                       </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleEdit(piece)}
-                        className="px-4 py-2 text-sm ibm-plex-mono-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
-                      >
-                        Editar
-                      </button>
-                      <button
-                        onClick={() => handleDelete(piece.id)}
-                        className="px-4 py-2 text-sm ibm-plex-mono-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors"
-                      >
-                        Eliminar
-                      </button>
+                    )}
+                    <div>
+                      <h3 className="ibm-plex-mono-medium text-gray-900">{piece.title}</h3>
+                      <p className="ibm-plex-mono-regular text-sm text-gray-500">
+                        {new Date(piece.dateAdded).toLocaleDateString()}
+                      </p>
                     </div>
                   </div>
-                ))}
-              </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleEdit(piece)}
+                      className="px-4 py-2 text-sm ibm-plex-mono-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDelete(piece.id)}
+                      className="px-4 py-2 text-sm ibm-plex-mono-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
             )}
           </div>
         </div>
