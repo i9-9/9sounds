@@ -50,7 +50,10 @@ export function PiecesProvider({ children }: { children: ReactNode }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(piece),
       });
-      if (!response.ok) throw new Error('Error al crear la pieza');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al crear la pieza');
+      }
       const newPiece = await response.json();
       setPieces(prev => [...prev, newPiece]);
     } catch (err) {

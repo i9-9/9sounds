@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/app/lib/prisma';
+import { pieces as staticPieces } from '@/app/data/pieces';
 
 // GET /api/pieces - Obtener todas las piezas
 export async function GET() {
@@ -8,13 +9,10 @@ export async function GET() {
       orderBy: { dateAdded: 'desc' }
     });
     return NextResponse.json(pieces);
-  } catch (error) {
-    console.error('Error fetching pieces from database:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
-    return NextResponse.json(
-      { error: `Error al obtener las piezas: ${errorMessage}. Verifica que DATABASE_URL esté configurada correctamente.` },
-      { status: 500 }
-    );
+  } catch {
+    console.log('Database not configured, using static data as fallback');
+    // Fallback a datos estáticos si no hay DB configurada
+    return NextResponse.json(staticPieces);
   }
 }
 
@@ -32,10 +30,10 @@ export async function POST(request: Request) {
       },
     });
     return NextResponse.json(piece);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { error: `Error al crear la pieza: ${error instanceof Error ? error.message : 'Error desconocido'}` },
-      { status: 500 }
+      { error: 'Base de datos no configurada. Las funciones de administración requieren una base de datos PostgreSQL.' },
+      { status: 503 }
     );
   }
 }
@@ -54,10 +52,10 @@ export async function PUT(request: Request) {
       },
     });
     return NextResponse.json(piece);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { error: `Error al actualizar la pieza: ${error instanceof Error ? error.message : 'Error desconocido'}` },
-      { status: 500 }
+      { error: 'Base de datos no configurada. Las funciones de administración requieren una base de datos PostgreSQL.' },
+      { status: 503 }
     );
   }
 }
@@ -80,10 +78,10 @@ export async function DELETE(request: Request) {
     });
     
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      { error: `Error al eliminar la pieza: ${error instanceof Error ? error.message : 'Error desconocido'}` },
-      { status: 500 }
+      { error: 'Base de datos no configurada. Las funciones de administración requieren una base de datos PostgreSQL.' },
+      { status: 503 }
     );
   }
 } 

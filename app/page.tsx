@@ -27,13 +27,10 @@ export default function Home() {
         </div>
       )}
 
-      {error && (
+      {error && pieces.length === 0 && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
           <p className="helvetica-medium text-red-600 mb-2">Error al cargar las piezas</p>
           <p className="helvetica-regular text-sm text-red-500">{error}</p>
-          <p className="helvetica-regular text-sm text-gray-600 mt-2">
-            Por favor, verifica que la base de datos esté configurada correctamente.
-          </p>
         </div>
       )}
 
