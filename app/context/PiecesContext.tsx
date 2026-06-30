@@ -27,11 +27,17 @@ export function PiecesProvider({ children }: { children: ReactNode }) {
   const fetchPieces = async () => {
     try {
       const response = await fetch('/api/pieces');
-      if (!response.ok) throw new Error('Error al cargar las piezas');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Error desconocido' }));
+        throw new Error(errorData.error || 'Error al cargar las piezas');
+      }
       const data = await response.json();
       setPieces(data);
+      setError(null);
     } catch (err) {
+      console.error('Error fetching pieces:', err);
       setError(err instanceof Error ? err.message : 'Error desconocido');
+      setPieces([]);
     } finally {
       setIsLoading(false);
     }

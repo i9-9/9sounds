@@ -7,7 +7,7 @@ import { usePieces } from './context/PiecesContext';
 
 export default function Home() {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-  const { pieces } = usePieces();
+  const { pieces, isLoading, error } = usePieces();
 
   return (
     <main className="min-h-screen w-screen p-4">
@@ -21,11 +21,35 @@ export default function Home() {
         </button>
       </div>
       
-      <div className="space-y-1">
-        {pieces.map((piece) => (
-          <MusicAccordionItem key={piece.id} piece={piece} />
-        ))}
-      </div>
+      {isLoading && (
+        <div className="flex items-center justify-center py-12">
+          <p className="helvetica-regular text-gray-500">Cargando piezas musicales...</p>
+        </div>
+      )}
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+          <p className="helvetica-medium text-red-600 mb-2">Error al cargar las piezas</p>
+          <p className="helvetica-regular text-sm text-red-500">{error}</p>
+          <p className="helvetica-regular text-sm text-gray-600 mt-2">
+            Por favor, verifica que la base de datos esté configurada correctamente.
+          </p>
+        </div>
+      )}
+
+      {!isLoading && !error && pieces.length === 0 && (
+        <div className="flex items-center justify-center py-12">
+          <p className="helvetica-regular text-gray-500">No hay piezas musicales disponibles.</p>
+        </div>
+      )}
+      
+      {!isLoading && !error && pieces.length > 0 && (
+        <div className="space-y-1">
+          {pieces.map((piece) => (
+            <MusicAccordionItem key={piece.id} piece={piece} />
+          ))}
+        </div>
+      )}
 
       <InfoModal 
         isOpen={isInfoModalOpen}

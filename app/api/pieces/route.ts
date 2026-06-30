@@ -9,8 +9,10 @@ export async function GET() {
     });
     return NextResponse.json(pieces);
   } catch (error) {
+    console.error('Error fetching pieces from database:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
     return NextResponse.json(
-      { error: `Error al obtener las piezas: ${error instanceof Error ? error.message : 'Error desconocido'}` },
+      { error: `Error al obtener las piezas: ${errorMessage}. Verifica que DATABASE_URL esté configurada correctamente.` },
       { status: 500 }
     );
   }
